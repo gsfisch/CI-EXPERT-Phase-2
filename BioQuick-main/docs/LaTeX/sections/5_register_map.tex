@@ -1,0 +1,38 @@
+\section{Register Map}
+
+This section provides a comprehensive register map for the BioQuick module, detailing the programmable registers essential for system configuration, status monitoring, and data operations. The table below lists each register with its name, address, bit fields, description, and access type (R for read-only, W for write-only, R/W for read/write). This map is crucial for system integration and validation, ensuring clear understanding of the module's programmable interface.
+
+% \begin{tabular}{|m{.10\columnwidth}|m{.25\columnwidth}|m{.55\columnwidth}|}
+%         \hline
+%         \textbf{Signal} & \textbf{Signal} & \multirow{2}{*}{\textbf{Description}} \\
+%         \textbf{Type} & \textbf{Name} & \\
+
+\begin{table}[!htb]
+    \centering
+    \caption{Register Map for BioQuick Module}
+    \label{tab:register-map}
+    \begin{tabular}{|m{.23\columnwidth}|m{.11\columnwidth}|m{.1\columnwidth}|m{.31\columnwidth}|m{.1\columnwidth}|}
+        \hline
+        \textbf{Register} & \multirow{2}{*}{\textbf{Address}} & \textbf{Bit} & \multirow{2}{*}{\textbf{Description}} & \textbf{Access} \\
+        \textbf{Name} & & \textbf{Field} & & \textbf{Type} \\
+        \hline
+        SPI\_CONFIG & 0x00 & [0] & Clock Polarity (CPOL): 0 = Idle low, 1 = Idle high & R/W \\
+        & & [1] & Clock Phase (CPHA): 0 = Sample on leading edge, 1 = Sample on trailing edge & R/W \\
+        & & [2] & Bit Order: 0 = MSB first, 1 = LSB first & R/W \\
+        & & [3-7] & Reserved & R \\
+        \hline
+        SPI\_STATUS & 0x04 & [0] & SPI Busy: 0 = Idle, 1 = Transaction in progress & R \\
+        & & [1] & CRC Error: 0 = No error, 1 = CRC mismatch detected & R \\
+        & & [2-7] & Reserved & R \\
+        \hline
+        DATA\_CONTROL & 0x08 & [0] & Operation Type: 0 = Read, 1 = Write & R/W \\
+        & & [1] & Auto-Increment Enable: 0 = Disabled, 1 = Enabled & R/W \\
+        & & [2-7] & Reserved & R \\
+        \hline
+        DATA\_ADDRESS & 0x0C & [0-11] & Memory Address: 12-bit address for read/write operations & R/W \\
+        & & [12-15] & Reserved & R \\
+        \hline
+        DATA\_VALUE & 0x10 & [0-15] & Data Value: 16-bit data for write or read operations & R/W \\
+        \hline
+    \end{tabular}
+\end{table}

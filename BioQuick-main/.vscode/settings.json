@@ -1,0 +1,127 @@
+{
+    "latex-workshop.latex.outDir": "output",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "docker",
+            "args": [
+                // Docker boilerplate
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workspace",
+                "-w",
+                "/workspace",
+                "texlive/texlive:latest-full",
+                "latexmk",
+                // Actual texlive command
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-output-directory=%OUTDIR%",
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "xelatex",
+            "command": "docker",
+            "args": [
+                // Docker boilerplate
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workspace",
+                "-w",
+                "/workspace",
+                "texlive/texlive:latest-full",
+                // Actual texlive command
+                "xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "docker",
+            "args": [
+                // Docker boilerplate
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workspace",
+                "-w",
+                "/workspace",
+                "texlive/texlive:latest-full",
+                // Actual texlive command
+                "pdflatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "docker",
+            "args": [
+                // Docker boilerplate
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workspace",
+                "-w",
+                "/workspace",
+                "texlive/texlive:latest-full",
+                // Actual texlive command
+                "bibtex",
+                "%DOCFILE%"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdfLaTeX",
+            "tools": [
+                "pdflatex"
+            ]
+        },        
+        {
+            "name": "latexmk 🔃",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "xelatex ➞ bibtex ➞ xelatex`×2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ]
+}

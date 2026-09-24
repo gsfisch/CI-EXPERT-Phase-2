@@ -1,0 +1,5 @@
+# LaTeX temporary and output files
+***
+
+# Do not ignore the gitignore
+!.gitignore

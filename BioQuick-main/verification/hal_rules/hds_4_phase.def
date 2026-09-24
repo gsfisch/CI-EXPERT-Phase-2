@@ -1,0 +1,84 @@
+include default
+params HAL {allow_design_info_error_suppression=yes}
+
+# best use case is to deactivate rules using line number and not general rule
+# use this model:
+# message: (copy reason from HAL)
+# reason: (reason to waiver that message)
+
+# Clock renaming rule off
+params DIFCLK {off}
+# Reset renaming rule off
+params DIFRST {off}
+# Feed through not a problem beacuse of ack
+params FDTHRU {off}
+# No block naming
+params NOBLKN {off}
+# Modules do contain synchronous and asynchronous logic
+params SYNASN {off}
+# logic [1:0] sync; in ffd_sync don't need constants
+params STYVAL {off}
+# typedef states being used in hds_4_phase_sen and hds_4_phase_rcv, don't need package
+params TDOPKG {off}
+# FSMs not being coded in gray code
+# params TRNMBT {off}
+
+# Notes checks off
+params RULREP {report_successfull=no}
+params RULREP {report_violated=no}
+params RULREP {report_unchecked=no}
+params RULREP {report_unclassified=no}
+params ALOWID {off}
+params FENAME {off}
+params MAXPRT {off}
+params MLITNU {off}
+params NOLABL {off}
+params PDFPKG {off}
+params SUBPNM {off}
+params SUBTNM {off}
+params UNITNM {off}
+params RENAME {off}
+params PRTLYO {off}
+params ARCHID {off}
+params CLKPRT {off}
+params COMDIF {off}
+params GENUSD {off}
+params INOPRT {off}
+params INPPRT {off}
+params MXPROC {off}
+params RSTPRT {off}
+params DECLIN {off}
+params IDLENG {off}
+params SUBPLN {off}
+params UPCLBL {off}
+params UPCSFN {off}
+params CDNOTE {off}
+params LINPRT {off}
+params NEGRNG {off}
+params NRTLWT {off}
+params PBYNAM {off}
+params RSTDAS {off}
+params RSTSCB {off}
+params RSTSYN {off}
+params AUTOBX {off}
+params EXPGBX {off}
+params EXPBBX {off}
+params LARGEN {off}
+params LARFOR {off}
+params LARMEM {off}
+params LNSENS {off}
+params MULTWT {off}
+params OVCOND {off}
+params TRGGLT {off}
+params TSKAWS {off}
+params CLKINF {off}
+params FFASRT {off}
+params GENTOP {off}
+params GTCLKN {off}
+params FSMIDN {off}
+params INFNOT {off}
+params NUMDFF {off}
+params PRTCNT {off}
+params INSYNC {off}
+params SCNLEN {off}
+params WRSCNL {off}

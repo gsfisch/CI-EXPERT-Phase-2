@@ -1,0 +1,66 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc} % Standard encoding
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Latin Modern font
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem} % For customizing lists
+\usepackage{amsmath} % For mathematical formatting
+\usepackage{xcolor} % For color support
+\usepackage{booktabs} % For better table formatting
+\usepackage[T1]{fontenc}% To edit the section formatting
+\usepackage{titlesec}% To edit the section formatting
+\usepackage{import}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+
+\overfullrule=5mm
+\hfuzz=1pt
+\vfuzz=1pt
+
+% Define colors and adjust spacing to match the images
+\definecolor{headercolor}{RGB}{0, 112, 192} % Blue header color similar to images
+\definecolor{subsectioncolor}{RGB}{0, 112, 192} % Blue for subsections
+\setlength{\parskip}{6pt} % Paragraph spacing
+\setlength{\itemsep}{4pt} % Space between items
+\renewcommand{\baselinestretch}{1.15} % Line spacing adjustment
+
+\titleformat{\section}
+{\normalfont\bfseries\color{subsectioncolor}}
+{\thesection.}{0.5em}{}
+
+\titlespacing{\section}{1.5pc}{0.5ex plus .1ex minus .2ex}{0.5pc}
+
+\titleformat{\subsection}
+{\normalfont\bfseries\color{subsectioncolor}}
+{\thesubsection.}{0.5em}{}
+
+\titlespacing{\subsection}{3pc}{0.5ex plus .1ex minus .2ex}{0.5pc}
+
+\title{Preliminary Design Report Requirements}
+
+\def\@maketitle
+{
+  \begin{center}%
+    {\LARGE \color{headercolor} \textbf{Preliminary Design Report Requirements} \par}
+  \end{center}%
+}
+
+
+
+
+\begin{document}
+
+\@maketitle
+
+\input{sections/1_overview}
+\include{sections/2_micro_architecture}
+\include{sections/3_clock_reset}
+\include{sections/4_module_operation}
+\include{sections/5_register_map}
+\include{sections/6_work_planning}
+
+
+\end{document}

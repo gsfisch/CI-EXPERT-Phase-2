@@ -1,0 +1,20 @@
+*.vcd
+*.log
+*.history
+
+# Verilator generated files
+.verilator
+
+#simulation
+simulation/vivado*
+simulation/questa*
+
+#verif
+verification/cov_work*
+#verification/hal/*
+verification/imc*
+verification/xcelium*
+
+#synthesis
+synthesis/genus*
+synthesis/innovus*
