@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BioQuick
 
 ## Overview
@@ -20,3 +21,6 @@ The BioQuick system architecture is composed of several key components that work
 - **ADC Integration Placeholders**: Provisions are included to interface with an ADC SAR, enabling the capture of analog-to-digital conversion values and writing them to memory for further processing.
 
 For a comprehensive understanding of the microarchitecture, data flow, and control logic, refer to the detailed Preliminary Design Report (PDR) and associated documentation in the [docs](docs/README.md) directory. This includes diagrams and detailed descriptions of the SPI-to-APB data flow and system integration.
+=======
+teste
+>>>>>>> 57143ee104802218b7b9d0241556682f58b4bbd5
