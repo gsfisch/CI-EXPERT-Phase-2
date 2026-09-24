@@ -1,0 +1,4 @@
+../inp_data/testbench/TEST_TOP.v
+../inp_data/source/TOP.v
+../inp_data/source/ADDER4.v
+../inp_data/source/COUNTER.v

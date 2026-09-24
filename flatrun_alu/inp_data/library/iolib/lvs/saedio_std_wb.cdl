@@ -1,0 +1,2948 @@
+***********************************************************************
+****                                                               ****
+****  The data contained in the file is created for educational    **** 
+****  and training purposes only and are not recommended           ****
+****  for fabrication                                              ****
+****                                                               ****
+***********************************************************************
+****                                                               ****
+****  Copyright (C) 2013 Synopsys, Inc.                            ****
+****                                                               ****
+***********************************************************************
+****                                                               ****
+****  The 32/28nm Generic Library ("Library") is unsupported       ****    
+****  Confidential Information of Synopsys, Inc. ("Synopsys")      ****    
+****  provided to you as Documentation under the terms of the      ****    
+****  End User Software License Agreement between you or your      ****    
+****  employer and Synopsys ("License Agreement") and you agree    ****    
+****  not to distribute or disclose the Library without the        ****    
+****  prior written consent of Synopsys. The Library IS NOT an     ****    
+****  item of Licensed Software or Licensed Product under the      ****    
+****  License Agreement.  Synopsys and/or its licensors own        ****    
+****  and shall retain all right, title and interest in and        ****    
+****  to the Library and all modifications thereto, including      ****    
+****  all intellectual property rights embodied therein. All       ****    
+****  rights in and to any Library modifications you make are      ****    
+****  hereby assigned to Synopsys. If you do not agree with        ****    
+****  this notice, including the disclaimer below, then you        ****    
+****  are not authorized to use the Library.                       ****    
+****                                                               ****  
+****                                                               ****      
+****  THIS LIBRARY IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN   ****
+****  "AS IS" BASIS, WITH NO INTELLECUTAL PROPERTY                 ****
+****  INDEMNIFICATION AND NO SUPPORT. ANY EXPRESS OR IMPLIED       ****
+****  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED       ****
+****  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR   ****
+****  PURPOSE ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS    ****
+****  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,     ****
+****  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT      ****
+****  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     ****
+****  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)     ****
+****  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN    ****
+****  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE    ****
+****  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS      ****
+****  DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF         ****
+****  SUCH DAMAGE.                                                 **** 		
+****                                                               ****  
+***********************************************************************
+
+
+
+.subckt BONDPAD PADIO VDD VDDIO VSS VSSIO
+.ends BONDPAD
+  
+ .subckt A1825 PADIO VDD VDDIO VSS VSSIO
+ dD6 VDDIO PADIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD7 PADIO VSSIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends A1825
+ 
+ 
+
+ 
+ 
+ .subckt AR1825 CORE PADIO VDD VDDIO VSS VSSIO
+ dD0 net21 VSSIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD1 VDDIO net21 pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ rR2 net21 PADIO rppoly_wos w='1.0u' l='0.556u' m=1
+ rR5 CORE PADIO rppoly_wos w='1.0u' l='18u' m=1
+ .ends AR1825
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt AVDD_EW AVDD VDD VSS VSSIO
+ XI2 AVDD VSSIO out2 out3 gen_invc
+ XI1 AVDD VSSIO out1 out2 gen_invc
+ XI0 AVDD VSSIO net200 out1 gen_invc
+ M13 VSSIO net200 VSSIO VSSIO n25 w='3.5u' l='0.26u' nf=1 m=3
+ M3 AVDD out3 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1.0 m=7
+ rR18 net200 net201 rppoly_wos w='1.0u' l='18u' m=1
+ rR12 net194 AVDD rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net194 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net199 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net199 net201 rppoly_wos w='1.0u' l='18u' m=1
+ .ends AVDD_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt AVDD_NS AVDD VDD VSS VSSIO
+ XI2 AVDD VSSIO out2 out3 gen_invc
+ XI1 AVDD VSSIO out1 out2 gen_invc
+ XI0 AVDD VSSIO net200 out1 gen_invc
+ M13 VSSIO net200 VSSIO VSSIO n25 w='3.5u' l='0.26u' nf=1 m=3
+ M3 AVDD out3 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1.0 m=7
+ rR18 net200 net201 rppoly_wos w='1.0u' l='18u' m=1
+ rR12 net194 AVDD rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net194 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net199 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net199 net201 rppoly_wos w='1.0u' l='18u' m=1
+ .ends AVDD_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt AVSS_EW AVSS VDD VDDIO VSS
+ XI2 VDDIO AVSS out2 out3 gen_invc
+ XI1 VDDIO AVSS out1 out2 gen_invc
+ XI0 VDDIO AVSS net200 out1 gen_invc
+ M13 AVSS net200 AVSS AVSS n25 w='3.5u' l='0.26u' nf=1 m=3
+ M3 VDDIO out3 AVSS AVSS n25 w='3.0u' l='0.26u' nf=1.0 m=7
+ rR18 net200 net201 rppoly_wos w='1.0u' l='18u' m=1
+ rR12 net194 VDDIO rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net194 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net199 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net199 net201 rppoly_wos w='1.0u' l='18u' m=1
+ .ends AVSS_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt AVSS_NS AVSS VDD VDDIO VSS
+ XI2 VDDIO AVSS out2 out3 gen_invc
+ XI1 VDDIO AVSS out1 out2 gen_invc
+ XI0 VDDIO AVSS net200 out1 gen_invc
+ M13 AVSS net200 AVSS AVSS n25 w='3.5u' l='0.26u' nf=1 m=3
+ M3 VDDIO out3 AVSS AVSS n25 w='3.0u' l='0.26u' nf=1.0 m=7
+ rR18 net200 net201 rppoly_wos w='1.0u' l='18u' m=1
+ rR12 net194 VDDIO rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net194 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net199 net197 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net199 net201 rppoly_wos w='1.0u' l='18u' m=1
+ .ends AVSS_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_D12I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=30
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ .ends gen_D12I1025_EW
+ 
+ .subckt B12I1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI1 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI6 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D12I1025_EW
+ rR3 outc PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B12I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_D12I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=30
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ .ends gen_D12I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt B12I1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI6 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D12I1025_NS
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI1 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ rR3 outc PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B12I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_D12I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=30
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ .ends gen_D12I1025_EW
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt B12ISH1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI12 PADIO net2 net3 gen_ESD
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ XI9 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D12I1025_EW
+ rR16 net1 PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ XI13 net1 VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ .ends B12ISH1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_D12I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=30
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ .ends gen_D12I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt B12ISH1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI13 net245 VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI9 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D12I1025_NS
+ XI12 PADIO net246 net247 gen_ESD
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ rR16 net245 PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B12ISH1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_D16I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=25
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=38
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ .ends gen_D16I1025_EW
+ 
+ .subckt B16I1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI9 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ XI2 net141 VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI6 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D16I1025_EW
+ rR3 net141 PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B16I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_D16I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=25
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=38
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ .ends gen_D16I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt B16I1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI6 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D16I1025_NS
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI2 net141 VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI9 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ rR3 net141 PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B16I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_D16I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=25
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=38
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ .ends gen_D16I1025_EW
+ 
+ .subckt B16ISH1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI11 PADIO VDDIO VSSIO gen_ESD
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI10 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D16I1025_EW
+ rR3 outc PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B16ISH1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_D16I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=25
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=38
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ .ends gen_D16I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt B16ISH1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI10 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D16I1025_NS
+ XI11 PADIO VDDIO VSSIO gen_ESD
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ rR3 outc PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B16ISH1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_D4I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M3 Out a1 VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ .ends gen_D4I1025_EW
+ 
+ .subckt B4I1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI1 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI4 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D4I1025_EW
+ rR3 outc PADIO rppoly_wos w='0.112u' l='3.72u' m=1
+ .ends B4I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_D4I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M3 Out a1 VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ .ends gen_D4I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt B4I1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI4 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D4I1025_NS
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI1 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ rR3 outc PADIO rppoly_wos w='0.112u' l='3.72u' m=1
+ .ends B4I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_D4I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M3 Out a1 VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ .ends gen_D4I1025_EW
+ 
+ .subckt B4ISH1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI9 PADIO VDDIO VSSIO gen_ESD
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ rR10 outc PADIO rppoly_wos w='0.2u' l='17u' m=1
+ XI8 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D4I1025_EW
+ .ends B4ISH1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_D4I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M3 Out a1 VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ .ends gen_D4I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt B4ISH1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI8 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D4I1025_NS
+ XI9 PADIO VDDIO VSSIO gen_ESD
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ rR10 outc PADIO rppoly_wos w='0.2u' l='17u' m=1
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ .ends B4ISH1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_D8I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ .ends gen_D8I1025_EW
+ 
+ .subckt B8I1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI1 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ rR6 outc PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ XI5 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D8I1025_EW
+ .ends B8I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_D8I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ .ends gen_D8I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt B8I1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS VSSIO
+ XI5 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D8I1025_NS
+ XI7 PADIO VDDIO VSSIO gen_ESD
+ XI1 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ rR6 outc PADIO rppoly_wos w='0.2u' l='17.0u' m=1
+ .ends B8I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_D8I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ .ends gen_D8I1025_EW
+ 
+ .subckt B8ISH1025_EW DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI9 PADIO VDDIO VSSIO gen_ESD
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI8 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D8I1025_EW
+ rR10 outc PADIO rppoly_wos w='0.2u' l='17u' m=1
+ .ends B8ISH1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_D8I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ .ends gen_D8I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2for_pup_pdown VDD VSS in1 in2 out
+ mM6 out in2 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out in1 VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out in1 net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 in2 VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2for_pup_pdown
+ 
+ .subckt gen_inv VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1 m=1
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=1
+ .ends gen_inv
+ 
+ .subckt gen_logfor_pup_pdown Outn Outp VDD VSS p_down p_up
+ XI1 VDD VSS net62 p_down net61 gen_nand2for_pup_pdown
+ XI0 VDD VSS p_up net63 Outp gen_nand2for_pup_pdown
+ XI4 VDD VSS p_up net62 gen_inv
+ XI3 VDD VSS net61 Outn gen_inv
+ XI2 VDD VSS p_down net63 gen_inv
+ .ends gen_logfor_pup_pdown
+ 
+ .subckt gen_lsh_1.05_2.5_forpup_pdown Din VDD VDDIO VSS VSSIO out
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in VSSIO VSSIO n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 VDDIO VDDIO p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forpup_pdown
+ 
+ .subckt gen_pup_pdown Outc VDD VDDIO VSS VSSIO p_down p_up
+ XI0 net70 net69 VDD VSS p_down p_up gen_logfor_pup_pdown
+ XI6 net70 VDD VDDIO VSS VSSIO net68 gen_lsh_1.05_2.5_forpup_pdown
+ XI5 net69 VDD VDDIO VSS VSSIO net65 gen_lsh_1.05_2.5_forpup_pdown
+ M3 Outc net65 VDDIO VDDIO p25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 Outc net68 VSSIO VSSIO n25 w='0.36u' l='0.26u' nf=1 m=1
+ .ends gen_pup_pdown
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt B8ISH1025_NS DIN DOUT EN PADIO PULL_DOWN PULL_UP R_EN VDD VDDIO VSS
+ + VSSIO
+ XI8 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D8I1025_NS
+ XI9 PADIO VDDIO VSSIO gen_ESD
+ XI2 outc VDD VDDIO VSS VSSIO PULL_DOWN PULL_UP gen_pup_pdown
+ XI7 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ rR10 outc PADIO rppoly_wos w='0.2u' l='17u' m=1
+ .ends B8ISH1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt CIOVDDIOVSS_EW VDD VDDIO VSS VSSIO
+ M0 VSSIO VDDIO VSSIO VSSIO n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ .ends CIOVDDIOVSS_EW
+ 
+ 
+
+ 
+ 
+ .subckt CIOVDDIOVSS_NS VDD VDDIO VSS VSSIO
+ M0 VSSIO VDDIO VSSIO VSSIO n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ .ends CIOVDDIOVSS_NS
+ 
+ 
+
+ 
+ 
+ .subckt CVDDVSS_EW VDD VDDIO VSS VSSIO
+ M0 VSS VDD VSS VSS n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ .ends CVDDVSS_EW
+ 
+ 
+
+ 
+ 
+ .subckt CVDDVSS_NS VDD VDDIO VSS VSSIO
+ M0 VSS VDD VSS VSS n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ .ends CVDDVSS_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_D12I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=30
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ .ends gen_D12I1025_EW
+ 
+ .subckt D12I1025_EW DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI4 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D12I1025_EW
+ .ends D12I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_D12I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=30
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=26
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ .ends gen_D12I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt D12I1025_NS DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI4 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D12I1025_NS
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ .ends D12I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_D16I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=25
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=38
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ .ends gen_D16I1025_EW
+ 
+ .subckt D16I1025_EW DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI5 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D16I1025_EW
+ .ends D16I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5_forD12_D16 Din Out VDD VDDIO VSS VSSIO
+ mM0 !in Din VDD VDD p105 w='1.0u' l='0.03u' nf=1 m=1
+ M1 !in Din VSS VSS n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 Out out1 VSSIO VSSIO n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M2 out2 !in VSSIO VSSIO n25 w='1.0u' l='0.26u' nf=1 m=7
+ M7 Out out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1 m=3
+ M6 out1 out2 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 VDDIO VDDIO p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5_forD12_D16
+ 
+ .subckt gen_tri_forD12_D16 En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.28u' nf=1 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.28u' nf=1 m=2
+ .ends gen_tri_forD12_D16
+ 
+ .subckt gen_D16I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI9 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ XI10 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5_forD12_D16
+ M11 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=25
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=38
+ M12 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=32
+ XI8 Enable in a1 a2 VDDIO VSSIO gen_tri_forD12_D16
+ .ends gen_D16I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt D16I1025_NS DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI5 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D16I1025_NS
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ .ends D16I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_D4I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M3 Out a1 VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ .ends gen_D4I1025_EW
+ 
+ .subckt D4I1025_EW DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI2 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D4I1025_EW
+ .ends D4I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_D4I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M3 Out a1 VDDIO VDDIO p25 w='2.5u' l='0.26u' nf=1 m=16
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=10
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ .ends gen_D4I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt D4I1025_NS DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI2 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D4I1025_NS
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ .ends D4I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_D8I1025_EW Din En Out VDD VDDIO VSS VSSIO
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ .ends gen_D8I1025_EW
+ 
+ .subckt D8I1025_EW DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI3 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D8I1025_EW
+ .ends D8I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_lsh_1.05_2.5 Din out vdd vddio vss vssio
+ mM0 !in Din vdd vdd p105 w='1.0u' l='0.03u' nf=1.0 m=1
+ M1 !in Din vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M4 out out1 vssio vssio n25 w='0.7u' l='0.26u' nf=1.0 m=1
+ M3 out1 Din vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M2 out2 !in vssio vssio n25 w='1.3u' l='0.26u' nf=1 m=4
+ M7 out out1 vddio vddio p25 w='0.8u' l='0.26u' nf=1 m=2
+ M6 out1 out2 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M5 out2 out1 vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ .ends gen_lsh_1.05_2.5
+ 
+ .subckt gen_tri En din out1 out2 vddio vssio
+ M3 net170 En vddio vddio p25 w='1.0u' l='0.26u' nf=1.0 m=1
+ M2 out2 net170 out1 vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M1 out1 En vddio vddio p25 w='0.5u' l='0.26u' nf=1 m=3
+ M0 out1 din vddio vddio p25 w='0.9u' l='0.26u' nf=1.0 m=4
+ M9 out2 net170 vssio vssio n25 w='0.9u' l='0.3u' nf=1.0 m=1
+ M8 out2 din vssio vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ M7 net170 En vssio vssio n25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M6 out1 En out2 vssio n25 w='0.8u' l='0.3u' nf=1.0 m=2
+ .ends gen_tri
+ 
+ .subckt gen_D8I1025_NS Din En Out VDD VDDIO VSS VSSIO
+ XI2 En Enable VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ XI1 Din in VDD VDDIO VSS VSSIO gen_lsh_1.05_2.5
+ M8 VDDIO VDDIO VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M3 Out a1 VDDIO VDDIO p25 w='3.0u' l='0.26u' nf=1 m=22
+ M9 VSSIO VSSIO VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=11
+ M5 net37 a2 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ M4 Out VDDIO net37 VSSIO n25 w='3.0u' l='0.26u' nf=1 m=17
+ XI0 Enable in a1 a2 VDDIO VSSIO gen_tri
+ .ends gen_D8I1025_NS
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt D8I1025_NS DIN EN PADIO VDD VDDIO VSS VSSIO
+ XI3 DIN EN PADIO VDD VDDIO VSS VSSIO gen_D8I1025_NS
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ .ends D8I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt DIOVSSVSS VDD VDDIO VSS VSSIO
+ dD1 VSS VSSIO nd area='4p' l='2u' w='2u' m=1
+ dD0 VSSIO VSS nd area='4p' l='2u' w='2u' m=1
+ .ends DIOVSSVSS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt I1025_EW DOUT PADIO R_EN VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI0 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ .ends I1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2x1 Lout R_En VDD VSS out
+ mM6 out R_En VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout VDD VDD p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2x1
+ 
+ .subckt gen_lsh_2.5_1.05 Lout VDD VDDIO VSS VSSIO in
+ M17 net164 in VSSIO VSSIO n25 w='0.44u' l='0.3u' nf=1.0 m=1
+ M18 Lout in VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 VSS VSS n25 w='0.6u' l='0.3u' nf=1.0 m=2
+ M16 net164 in VDDIO VDDIO p25 w='1.55u' l='0.29u' nf=1 m=1
+ mM15 Lout net165 VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ mM13 net165 Lout VDD VDD p105 w='0.475u' l='0.03u' nf=1 m=2
+ .ends gen_lsh_2.5_1.05
+ 
+ .subckt gen_buf_in VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.27u' nf=1 m=1
+ .ends gen_buf_in
+ 
+ .subckt gen_buf_out VDD VSS in out
+ M6 out in VSS VSS n105 w='0.38u' l='0.03u' nf=1.0 m=18
+ mM7 out in VDD VDD p105 w='0.79u' l='0.03u' nf=1 m=18
+ .ends gen_buf_out
+ 
+ .subckt gen_I1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 prenand R_En VDD VSS preout gen_nand2x1
+ XI9 prenand VDD VDDIO VSS VSSIO !padio gen_lsh_2.5_1.05
+ XI0 VDDIO VSSIO PADIO !padio gen_buf_in
+ XI1 VDD VSS preout DOUT gen_buf_out
+ .ends gen_I1025
+ 
+ .subckt I1025_NS DOUT PADIO R_EN VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI0 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_I1025
+ .ends I1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt IOVDD_EW VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net197 out1 gen_invc
+ M13 VSSIO net197 VSSIO VSSIO n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDDIO out3 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=7
+ rR18 net197 net198 rppoly_wos w='1.0u' l='18u' m=1
+ rR14 net194 VDDIO rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net194 net195 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net196 net195 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net196 net198 rppoly_wos w='1.0u' l='18u' m=1
+ .ends IOVDD_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt IOVDD_NS VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net197 out1 gen_invc
+ M13 VSSIO net197 VSSIO VSSIO n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDDIO out3 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=7
+ rR18 net197 net198 rppoly_wos w='1.0u' l='18u' m=1
+ rR14 net194 VDDIO rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net194 net195 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net196 net195 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net196 net198 rppoly_wos w='1.0u' l='18u' m=1
+ .ends IOVDD_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt IOVSS_EW VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net180 out1 gen_invc
+ M13 VSSIO net180 VSSIO VSSIO n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDDIO out3 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=7
+ rR11 net177 net176 rppoly_wos w='1u' l='18.0u' m=1
+ rR12 net177 VDDIO rppoly_wos w='1.0u' l='18u' m=1
+ rR7 net180 net181 rppoly_wos w='1.0u' l='18u' m=1
+ rR6 net179 net181 rppoly_wos w='1.0u' l='18u' m=1
+ rR5 net179 net176 rppoly_wos w='1.0u' l='18u' m=1
+ .ends IOVSS_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt IOVSS_NS VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net180 out1 gen_invc
+ M13 VSSIO net180 VSSIO VSSIO n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDDIO out3 VSSIO VSSIO n25 w='3.0u' l='0.26u' nf=1 m=7
+ rR11 net177 net176 rppoly_wos w='1u' l='18.0u' m=1
+ rR12 net177 VDDIO rppoly_wos w='1.0u' l='18u' m=1
+ rR7 net180 net181 rppoly_wos w='1.0u' l='18u' m=1
+ rR6 net179 net181 rppoly_wos w='1.0u' l='18u' m=1
+ rR5 net179 net176 rppoly_wos w='1.0u' l='18u' m=1
+ .ends IOVSS_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt ISH1025_EW DOUT PADIO R_EN VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI2 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ .ends ISH1025_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_ESD PADIO VDDIO VSSIO
+ dD8 PADIO VDDIO pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD9 VSSIO PADIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ .ends gen_ESD
+ 
+ .subckt gen_nand2 Lout R_En out vdd vss
+ mM6 out R_En vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ mM7 out Lout vdd vdd p105 w='0.4u' l='0.03u' nf=1.0 m=1
+ M5 out Lout net72 vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ M4 net72 R_En vss vss n105 w='0.38u' l='0.03u' nf=1.0 m=1
+ .ends gen_nand2
+ 
+ .subckt gen_buf_out2 in out vdd vss
+ M6 out in vss vss n105 w='0.4u' l='0.03u' nf=1.0 m=18
+ mM7 out in vdd vdd p105 w='0.77u' l='0.03u' nf=1.0 m=18
+ .ends gen_buf_out2
+ 
+ .subckt gen_lsh2_2.5_1.05 Lout in vdd vddio vss vssio
+ M17 net164 in vssio vssio n25 w='0.7u' l='0.26u' nf=1 m=1
+ M18 Lout in vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M19 net165 net164 vss vss n25 w='0.95u' l='0.3u' nf=1.0 m=2
+ M16 net164 in vddio vddio p25 w='1.0u' l='0.26u' nf=1 m=1
+ mM15 Lout net165 vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ mM13 net165 Lout vdd vdd p105 w='0.37u' l='0.03u' nf=1.0 m=2
+ .ends gen_lsh2_2.5_1.05
+ 
+ .subckt gen_shmit in out vddio vssio
+ M2 vssio out net95 vddio p25 w='0.36u' l='0.26u' nf=1 m=1
+ M1 out in net95 vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M0 net95 in vddio vddio p25 w='0.6u' l='0.26u' nf=1.0 m=1
+ M5 vddio out net100 vssio n25 w='0.36u' l='0.26u' nf=1 m=1
+ M4 net100 in vssio vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ M3 out in net100 vssio n25 w='0.5u' l='0.26u' nf=1.0 m=1
+ .ends gen_shmit
+ 
+ .subckt gen_ISH1025 DOUT PADIO R_En VDD VDDIO VSS VSSIO
+ XI2 b R_En c VDD VSS gen_nand2
+ XI4 c DOUT VDD VSS gen_buf_out2
+ XI5 b a VDD VDDIO VSS VSSIO gen_lsh2_2.5_1.05
+ XI1 PADIO a VDDIO VSSIO gen_shmit
+ .ends gen_ISH1025
+ 
+ .subckt ISH1025_NS DOUT PADIO R_EN VDD VDDIO VSS VSSIO
+ XI1 PADIO VDDIO VSSIO gen_ESD
+ XI2 DOUT PADIO R_EN VDD VDDIO VSS VSSIO gen_ISH1025
+ .ends ISH1025_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt VDD_EW VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net166 out1 gen_invc
+ M13 VSS net166 VSS VSS n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDD out3 VSS VSS n25 w='3.0u' l='0.26u' nf=1 m=7
+ dD14 VDD VSSIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD15 VDDIO VDD pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ rR11 net165 net167 rppoly_wos w='1.0u' l='18.0u' m=1
+ rR12 net165 VDD rppoly_wos w='1.0u' l='18.0u' m=1
+ rR7 net166 net168 rppoly_wos w='1.0u' l='18.0u' m=1
+ rR6 net169 net168 rppoly_wos w='1.0u' l='18.0u' m=1
+ rR5 net169 net167 rppoly_wos w='1.0u' l='18.0u' m=1
+ .ends VDD_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt VDD_NS VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net166 out1 gen_invc
+ M13 VSS net166 VSS VSS n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDD out3 VSS VSS n25 w='3.0u' l='0.26u' nf=1 m=7
+ dD14 VDD VSSIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD15 VDDIO VDD pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ rR11 net165 net167 rppoly_wos w='1.0u' l='18.0u' m=1
+ rR12 net165 VDD rppoly_wos w='1.0u' l='18.0u' m=1
+ rR7 net166 net168 rppoly_wos w='1.0u' l='18.0u' m=1
+ rR6 net169 net168 rppoly_wos w='1.0u' l='18.0u' m=1
+ rR5 net169 net167 rppoly_wos w='1.0u' l='18.0u' m=1
+ .ends VDD_NS
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt VSS_EW VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net179 out1 gen_invc
+ M13 VSS net179 VSS VSS n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDD out3 VSS VSS n25 w='3.0u' l='0.26u' nf=1 m=7
+ dD9 VSS VSSIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD10 VDDIO VSS pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ rR18 net179 net180 rppoly_wos w='1.0u' l='18u' m=1
+ rR14 net174 VDD rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net174 net176 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net178 net176 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net178 net180 rppoly_wos w='1.0u' l='18u' m=1
+ .ends VSS_EW
+ 
+ 
+
+ 
+ 
+ .subckt gen_invc VDDIO VSSIO in out
+ M6 out in VDDIO VDDIO p25 w='0.84u' l='0.3u' nf=1.0 m=1
+ M7 out in VSSIO VSSIO n25 w='0.43u' l='0.3u' nf=1 m=1
+ .ends gen_invc
+ 
+ .subckt VSS_NS VDD VDDIO VSS VSSIO
+ XI2 VDDIO VSSIO out2 out3 gen_invc
+ XI1 VDDIO VSSIO out1 out2 gen_invc
+ XI0 VDDIO VSSIO net179 out1 gen_invc
+ M13 VSS net179 VSS VSS n25 w='10.5u' l='0.26u' nf=3.0 m=1
+ M3 VDD out3 VSS VSS n25 w='3.0u' l='0.26u' nf=1 m=7
+ dD9 VSS VSSIO nd area='10.8455p' l='0.362u' w='29.96u' m=20
+ dD10 VDDIO VSS pd area='10.8455p' l='0.362u' w='29.96u' m=20
+ rR18 net179 net180 rppoly_wos w='1.0u' l='18u' m=1
+ rR14 net174 VDD rppoly_wos w='1.0u' l='18u' m=1
+ rR15 net174 net176 rppoly_wos w='1.0u' l='18u' m=1
+ rR16 net178 net176 rppoly_wos w='1.0u' l='18u' m=1
+ rR17 net178 net180 rppoly_wos w='1.0u' l='18u' m=1
+ .ends VSS_NS
+ 
+ 
+

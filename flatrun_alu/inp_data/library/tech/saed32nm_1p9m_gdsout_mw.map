@@ -1,0 +1,193 @@
+;######################################################################
+;### Synopsys Milkyway Stream In mapping file                         #
+;###                                                                  #
+;### ver	date 	what                                          # 
+;### -------------------------------------------------------------    #
+;### 1.1	25/12/2012	added data types to layers to         # 
+;### 				avoid output of datatypes :0 and :1   # 	
+;### 				to the same layer                     #
+;###                                                                  #
+;### -------------------------------------------------------------    #
+;### Known issue:	                                              #
+;### 1. Minimum are violation in ICC on pins that are not connected   # 
+;###                                                                  #
+;######################################################################
+;######################################################################
+;# <Milkyway data:datatype> <GDSII data> <datatype>                   #
+;######################################################################
+;######################################################################
+;### 1.Basic drawing layers                                           #
+;### NWELL/DNW/DIFF/PIMP/NIMP/DIFF_25/PAD/ESD_25/SBLK/PO/HVTIMP/LVTIMP#
+;######################################################################
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                                                               ;;;;
+;;;;  The data contained in the file is created for educational    ;;;; 
+;;;;  and training purposes only and are not recommended           ;;;;
+;;;;  for fabrication                                              ;;;;
+;;;;                                                               ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                                                               ;;;;
+;;;;  Copyright (C) 2013 Synopsys, Inc.                            ;;;;
+;;;;                                                               ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                                                               ;;;;
+;;;;  The 32/28nm Generic Library ("Library") is unsupported       ;;;;    
+;;;;  Confidential Information of Synopsys, Inc. ("Synopsys")      ;;;;    
+;;;;  provided to you as Documentation under the terms of the      ;;;;    
+;;;;  End User Software License Agreement between you or your      ;;;;    
+;;;;  employer and Synopsys ("License Agreement") and you agree    ;;;;    
+;;;;  not to distribute or disclose the Library without the        ;;;;    
+;;;;  prior written consent of Synopsys. The Library IS NOT an     ;;;;    
+;;;;  item of Licensed Software or Licensed Product under the      ;;;;    
+;;;;  License Agreement.  Synopsys and/or its licensors own        ;;;;    
+;;;;  and shall retain all right, title and interest in and        ;;;;    
+;;;;  to the Library and all modifications thereto, including      ;;;;    
+;;;;  all intellectual property rights embodied therein. All       ;;;;    
+;;;;  rights in and to any Library modifications you make are      ;;;;    
+;;;;  hereby assigned to Synopsys. If you do not agree with        ;;;;    
+;;;;  this notice, including the disclaimer below, then you        ;;;;    
+;;;;  are not authorized to use the Library.                       ;;;;    
+;;;;                                                               ;;;;  
+;;;;                                                               ;;;;      
+;;;;  THIS LIBRARY IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN   ;;;;
+;;;;  "AS IS" BASIS, WITH NO INTELLECUTAL PROPERTY                 ;;;;
+;;;;  INDEMNIFICATION AND NO SUPPORT. ANY EXPRESS OR IMPLIED       ;;;;
+;;;;  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED       ;;;;
+;;;;  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR   ;;;;
+;;;;  PURPOSE ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS    ;;;;
+;;;;  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,     ;;;;
+;;;;  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT      ;;;;
+;;;;  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     ;;;;
+;;;;  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)     ;;;;
+;;;;  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN    ;;;;
+;;;;  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE    ;;;;
+;;;;  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS      ;;;;
+;;;;  DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF         ;;;;
+;;;;  SUCH DAMAGE.                                                 ;;;; 
+;;;;                                                               ;;;;  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+A 1:0 1 0    ; (NWELL)
+A 2:0 2 0    ; (DNW)
+A 3:0 3 0    ; (DIFF)
+A 4:0 4 0    ; (PIMP)
+A 5:0 5 0    ; (NIMP)
+A 6:0 6 0    ; (DIFF_18)
+A 7:0 7 0    ; (PAD)
+A 8:0 8 0    ; (ESD_25)
+A 9:0 9 0    ; (SBLK)
+A 10:0 10 0   ; (PO)
+A 29:0 29 0   ; (HVTIMP)
+A 30:0 30 0   ; (LVTIMP)
+A 75:0 75 0   ; (DIFF_25)
+A 100:0 100 0 ; (DIFF_FM) 
+A 101:0 101 0 ; (PO_FM)   
+;#####################################################################
+;### 2.Basic ROUTING and CONNECT layers
+;### Mx/CO/VIAx
+;#####################################################################
+D 11:0 11 0   ; (M1)
+D 13:0 13 0   ; (M2)
+D 15:0 15 0   ; (M3)
+D 17:0 17 0   ; (M4)
+D 19:0 19 0   ; (M5)
+D 21:0 21 0   ; (M6)
+D 23:0 23 0   ; (M7)
+D 25:0 25 0   ; (M8)
+D 27:0 27 0   ; (M9)
+A 28:0 28 0   ; (CO)
+A 12:0 12 0   ; (VIA1)
+A 14:0 14 0   ; (VIA2)
+A 16:0 16 0   ; (VIA3)
+A 18:0 18 0   ; (VIA4)
+A 20:0 20 0   ; (VIA5)
+A 22:0 22 0   ; (VIA6)
+A 24:0 24 0   ; (VIA7)
+A 26:0 26 0   ; (VIA8)
+A 42:0 42 0   ; (VIARDL) 
+
+;#####################################################################
+;### 3.Metal pin layers
+;### MxPIN
+;#####################################################################
+A 31:0 31 0   ; (M1PIN)
+A 32:0 32 0   ; (M2PIN)
+A 33:0 33 0   ; (M3PIN)
+A 34:0 34 0   ; (M4PIN)
+A 35:0 35 0   ; (M5PIN)
+A 36:0 36 0   ; (M6PIN)
+A 37:0 37 0   ; (M7PIN)
+A 38:0 38 0   ; (M8PIN)
+A 39:0 39 0   ; (M9PIN)
+A 43:0 43 0   ; (MRPIN)  //???
+
+;mapping Mx text to respective pin layer
+T 11 31 
+T 13 32 
+T 15 33 
+T 17 34 
+T 19 35 
+T 21 36 
+T 23 37 
+T 25 38 
+T 27 39 
+
+;#####################################################################
+;### 4.Dummy layers
+;### DDMY/PODMY/MxDMY
+;#####################################################################
+A  3:1  3 1          ; (DDMY)
+A 10:1 10 1          ; (PODMY)
+A 11:1 11 1          ; (M1DMY)
+A 13:1 13 1          ; (M2DMY)
+A 15:1 15 1          ; (M3DMY)
+A 17:1 17 1          ; (M4DMY)
+A 19:1 19 1          ; (M5DMY)
+A 21:1 21 1          ; (M6DMY)
+A 23:1 23 1          ; (M7DMY)
+A 25:1 25 1          ; (M8DMY)
+A 27:1 27 1          ; (M9DMY)
+
+;#####################################################################
+;### 5.Dummy metal exclusion layers
+;### DMxEXCL
+;#####################################################################
+A 64:0 64 0   ; (DM1EXCL)
+A 65:0 65 0   ; (DM2EXCL)
+A 66:0 66 0   ; (DM3EXCL)
+A 67:0 67 0   ; (DM4EXCL)
+A 68:0 68 0   ; (DM5EXCL)
+A 69:0 69 0   ; (DM6EXCL)
+A 70:0 70 0   ; (DM7EXCL)
+A 71:0 71 0   ; (DM8EXCL)
+A 72:0 72 0   ; (DM9EXCL)
+
+;#####################################################################
+;### 6.Resistor marking layers
+;### RNW/RPOLY/RDIFF/RMx
+;#####################################################################
+A 48:0 48 0   ; (RNW)
+A 53:0 53 0   ; (RM1)
+A 54:0 54 0   ; (RM2)
+A 55:0 55 0   ; (RM3)
+A 56:0 56 0   ; (RM4)
+A 57:0 57 0   ; (RM5)
+A 58:0 58 0   ; (RM6)
+A 59:0 59 0   ; (RM7)
+A 60:0 60 0   ; (RM8)
+A 61:0 61 0   ; (RM9)
+
+;#####################################################################
+;### 7.Other marking layers
+;### HOTNWL/DIOD/BJTDMY/LOGO/IP/prBoundary
+;#####################################################################
+A 41:0 41 0   ; (MRDL) 
+A 44:0 44 0   ; (HOTNWL)
+A 46:0 46 0   ; (DIOD)
+A 47:0 47 0   ; (BJTDMY)
+A 49:0 49 0   ; (RMARK)
+A 50:0 50 0   ; (prBoundary)
+A 51:0 51 0   ; (LOGO)
+A 52:0 52 0   ; (IP)

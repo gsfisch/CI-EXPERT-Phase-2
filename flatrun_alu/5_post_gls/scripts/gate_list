@@ -1,0 +1,3 @@
+../inp_data/testbench/TEST_TOP.v
+../out_data/post_layout/TOP_final.v
+-v ../inp_data/library/sclib/verilog/saed32nm.v
