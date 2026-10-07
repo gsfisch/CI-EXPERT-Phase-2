@@ -1,0 +1,3 @@
+Command Line: /tools/synopsys/vcs/W-2024.09-SP2-3/linux64/bin/elabcom -simflow -KDBRESOLVER -simvdaidir /home/ciexpert/guilherme.fisch/oi/CI-EXPERT-Phase-2/Module_ADC_SAR_PDK_SAED/blocks/SAR_ADC/simv.daidir -saveLevel -ssv -ssy -q -logdir /home/ciexpert/guilherme.fisch/oi/CI-EXPERT-Phase-2/Module_ADC_SAR_PDK_SAED/blocks/SAR_ADC/simv.daidir/kdbresolverLog
+uname(Linux cadmicro-el8-04.inf.ufrgs.br 4.18.0-553.87.1.el8_10.x86_64 #1 SMP Wed Dec 3 12:45:57 UTC 2025 x86_64)
+au time 0.115228 0.009283 0.025144 delta 94658560 94658560 total 363683840 363683840
